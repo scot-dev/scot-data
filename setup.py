@@ -17,6 +17,6 @@ setup(name='scot-data',
       packages=['scotdata'],
       package_data={'scotdata': ['*.mat']},
       
-      install_requires=['scot']
+      install_requires=['scot', 'numpy']
      )
 
