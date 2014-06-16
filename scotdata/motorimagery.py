@@ -30,7 +30,7 @@ locations : array-like, shape = [n_channels, 3]
 import numpy as np
 from os.path import abspath, dirname, join
 from scot.matfiles import loadmat
-from eegtopo.eegpos3d import positions as eeg_locations
+from scot.eegtopo.eegpos3d import positions as eeg_locations
 
 
 matfile = loadmat(join(abspath(dirname(__file__)), 'motorimagery.mat'))['s0']
