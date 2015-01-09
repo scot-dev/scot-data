@@ -16,7 +16,4 @@ setup(name='scot-data',
       url='https://github.com/SCoT-dev/scot-data',
       packages=['scotdata'],
       package_data={'scotdata': ['*.mat']},
-      
-      install_requires=['scot', 'numpy']
-     )
-
+      install_requires=['scot', 'numpy'])

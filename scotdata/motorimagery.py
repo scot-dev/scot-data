@@ -1,31 +1,33 @@
 """
 Summary
 -------
-Motor Imagery example data.
+Motor imagery example data.
 
 Extended Summary
 ----------------
-The Data set contains a continuous 45 channel EEG recording of a motor imagery experiment. The Data was preprocessed to
-reduce eye movement artifacts and resampled to a sampling rate of 100 Hz. With a visual cue the subject was instructed
-to perform either hand of foot motor imagery. The the trigger time points of the cues are stored in 'tr', and 'cl'
-contains the class labels (hand: 1, foot: -1). Duration of the motor imagery period was approximately 6 seconds.
+The data set contains a continuous 45 channel EEG recording of a motor imagery
+experiment. The data was preprocessed to reduce eye movement artifacts and
+resampled to a sampling rate of 100 Hz. With a visual cue, the subject was
+instructed to perform either hand or foot motor imagery. The trigger time
+points of the cues are stored in 'triggers', and 'classes' contains the class
+labels. Duration of the motor imagery period was approximately six seconds.
 
 Routine Listings
 ----------------
 samplerate : int
-    Sampling rate
+    Sampling rate.
 num_trials : int
-    Number of trials
+    Number of trials.
 triggers : list of int
-    Trigger locations (in units of samples)
-eeg : array-like, shape = [n_samples, n_channels]
-    EEG data
-classes : array-like, shape = [`num_trials`], dtype = str
+    Trigger locations (in units of samples).
+eeg : array-like, shape (n_samples, n_channels)
+    EEG data.
+classes : array-like, shape (`num_trials`), dtype = str
     Class labels for each trial ('hand' or 'foot').
 labels : list of str
-    EEG channel labels
-locations : array-like, shape = [n_channels, 3]
-    3D locations of electrodes (theoretical positions on spherical surface)
+    EEG channel labels.
+locations : array-like, shape (n_channels, 3)
+    3D locations of electrodes (theoretical positions on spherical surface).
 """
 import numpy as np
 from os.path import abspath, dirname, join
@@ -36,15 +38,15 @@ from scot.eegtopo.eegpos3d import positions as eeg_locations
 matfile = loadmat(join(abspath(dirname(__file__)), 'motorimagery.mat'))['s0']
 
 samplerate = matfile['fs']  # Sampling rate
-num_trials = matfile['T']   # Number of trials
-triggers = matfile['tr']    # Trigger locations
-eeg = matfile['eeg']        # EEG Data
+num_trials = matfile['T']  # Number of trials
+triggers = matfile['tr']  # Trigger locations
+eeg = matfile['eeg']  # EEG data
 
 # Class labels
 cltrans = {1: 'hand', -1: 'foot'}
 classes = np.array([cltrans[c] for c in matfile['cl']])
 
-# Unfortunately, the EEG channel labels are not stored in the file, so we set them manually.
+# Set EEG channel labels manually
 labels = ['AF7', 'AFz', 'AF8', 'F3', 'F1',
           'Fz', 'F2', 'F4', 'FT7', 'FC5',
           'FC3', 'FC1', 'FCz', 'FC2', 'FC4',
