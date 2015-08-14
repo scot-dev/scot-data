@@ -11,6 +11,7 @@ setup(
     name='scot-data',
     version=ver,
     description='Example data for the Source Connectivity Toolbox',
+    long_description='This package contains example data for use with SCoT.',
     url='https://github.com/scot-dev/scot-data',
     author='SCoT Development Team',
     author_email='scotdev@googlegroups.com',
