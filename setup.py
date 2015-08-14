@@ -29,6 +29,5 @@ setup(
     ],
     keywords='source connectivity EEG example data',
     packages=['scotdata'],
-    package_data={'scotdata': ['*.mat']},
     install_requires=['scot', 'numpy']
 )
