@@ -30,10 +30,18 @@ locations : array-like, shape (n_channels, 3)
     3D locations of electrodes (theoretical positions on spherical surface).
 """
 import numpy as np
-from os.path import abspath, dirname, join
+from os.path import abspath, dirname, join, isfile
+import requests
 from scot.matfiles import loadmat
 from scot.eegtopo.eegpos3d import positions as eeg_locations
 
+
+filename = join(abspath(dirname(__file__)), 'motorimagery.mat')
+if not isfile(filename):
+    r = requests.get("https://github.com/scot-dev/scot-data/raw/master/scotdata/motorimagery.mat")
+    with open(filename, 'wb') as f:
+        for chunk in r.iter_content():
+            f.write(chunk)
 
 matfile = loadmat(join(abspath(dirname(__file__)), 'motorimagery.mat'))['s0']
 
