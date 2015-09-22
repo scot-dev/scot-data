@@ -39,7 +39,7 @@ matfile = loadmat(join(abspath(dirname(__file__)), 'motorimagery.mat'))['s0']
 
 samplerate = matfile['fs']  # Sampling rate
 num_trials = matfile['T']  # Number of trials
-triggers = matfile['tr']  # Trigger locations
+triggers = np.asarray(matfile['tr'], dtype=int)  # Trigger locations
 eeg = matfile['eeg']  # EEG data
 
 # Class labels
